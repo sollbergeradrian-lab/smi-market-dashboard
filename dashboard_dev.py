@@ -355,7 +355,7 @@ fig = px.treemap(
     color_continuous_scale=["red","white","green"]
 )
 
-st.plotly_chart(fig1, use_container_width=True, key="heatmap")
+st.plotly_chart(fig, use_container_width=True, key="heatmap")
 
 st.subheader("🚀 Top Movers des Tages")
 
