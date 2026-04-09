@@ -120,7 +120,7 @@ fig = px.bar(
     title="Global Market Performance"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True, key="global_market_radar")
 
 st.subheader("🌙 Overnight Futures Radar")
 
@@ -351,7 +351,7 @@ fig = px.treemap(
     color_continuous_scale=["red","white","green"]
 )
 
-st.plotly_chart(fig)
+st.plotly_chart(fig1, use_container_width=True, key="heatmap")
 
 st.subheader("🚀 Top Movers des Tages")
 
@@ -410,7 +410,7 @@ fig = px.bar(
     color_continuous_scale=["red","white","green"],
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig2, use_container_width=True, key="liquidity")
 
 st.subheader("⚠️ SMI Crash Risk Radar")
 
@@ -800,7 +800,7 @@ st.subheader("📄 Market Report")
 
 if st.button("Generate Market Report"):
 
-    report = f"""
+report = f"""
 Swiss Market Report
 Datum: {today}
 
