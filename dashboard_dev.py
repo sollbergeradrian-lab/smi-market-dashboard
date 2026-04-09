@@ -800,7 +800,7 @@ st.subheader("📄 Market Report")
 
 if st.button("Generate Market Report"):
 
-report = f"""
+    report = f"""
 Swiss Market Report
 Datum: {today}
 
@@ -831,27 +831,24 @@ SMI TOP MOVERS
 ==============================
 """
 
-top_gainers = stocks_num.sort_values("Tag_raw", ascending=False).head(3)
+    top_gainers = stocks_num.sort_values("Tag_raw", ascending=False).head(3)
 
-for _, row in top_gainers.iterrows():
-
-    report += f"{row['Ticker']}  {row['Tag_raw']:.2f}%\n"
+    for _, row in top_gainers.iterrows():
+        report += f"{row['Ticker']}  {row['Tag_raw']:.2f}%\n"
 
     report += "\nSMI LOSERS\n\n"
 
-top_losers = stocks_num.sort_values("Tag_raw").head(3)
+    top_losers = stocks_num.sort_values("Tag_raw").head(3)
 
-for _, row in top_losers.iterrows():
-
-    report += f"{row['Ticker']}  {row['Tag_raw']:.2f}%\n"
+    for _, row in top_losers.iterrows():
+        report += f"{row['Ticker']}  {row['Tag_raw']:.2f}%\n"
 
     report += "\nSMART MONEY FLOW\n\n"
 
-top_inflow = stocks_num.sort_values("Flow_Score", ascending=False).head(3)
+    top_inflow = stocks_num.sort_values("Flow_Score", ascending=False).head(3)
 
-for _, row in top_inflow.iterrows():
-
-    report += f"{row['Ticker']}  Score {row['Flow_Score']:.2f}\n"
+    for _, row in top_inflow.iterrows():
+        report += f"{row['Ticker']}  Score {row['Flow_Score']:.2f}\n"
 
     pdf = FPDF()
     pdf.add_page()
