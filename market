@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ~/market_dashboard
+python3 market_report.py
+streamlit run dashboard_dev.py
