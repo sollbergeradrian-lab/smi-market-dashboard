@@ -1,0 +1,8 @@
+market_dashboard
+
+dashboard_dev.py
+requirements.txt
+stocks.csv
+crypto.csv
+indices.csv
+commodities.csv
