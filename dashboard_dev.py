@@ -204,9 +204,13 @@ for name, ticker in markets.items():
 
     data = safe_history(ticker)
 
-    if len(data) >= 2:
+    if data is not None and len(data) >= 2:
 
-        change = ((data["Close"][-1] / data["Close"][-2]) - 1) * 100
+        change = ((data["Close"].iloc[-1] / data["Close"].iloc[-2]) - 1) * 100
+
+    else:
+
+        change = 0
 
         st.write(f"{name} {trend(change)}")
 
