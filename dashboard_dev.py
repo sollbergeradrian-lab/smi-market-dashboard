@@ -406,15 +406,15 @@ heatmap_data = stocks_num.copy()
 
 heatmap_data = heatmap_data.sort_values("Tag_raw", ascending=False)
 
-fig = px.bar(
+fig_liquidity = px.bar(
     heatmap_data,
     x="Ticker",
     y="Tag_raw",
     color="Tag_raw",
-    color_continuous_scale=["red","white","green"],
+    color_continuous_scale=["red","white","green"]
 )
 
-st.plotly_chart(fig, use_container_width=True, key="liquidity")
+st.plotly_chart(fig_liquidity, use_container_width=True, key="liquidity")
 
 st.subheader("⚠️ SMI Crash Risk Radar")
 
