@@ -414,7 +414,7 @@ fig = px.bar(
     color_continuous_scale=["red","white","green"],
 )
 
-st.plotly_chart(fig2, use_container_width=True, key="liquidity")
+st.plotly_chart(fig, use_container_width=True, key="liquidity")
 
 st.subheader("⚠️ SMI Crash Risk Radar")
 
