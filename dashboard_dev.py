@@ -85,7 +85,7 @@ for ticker in markets.values():
         change = ((data["Close"].iloc[-1] / data["Close"].iloc[-2]) - 1) * 100
         changes.append(change)
 
-avg_change = sum(changes) / len(changes)
+avg_change = float(sum(changes) / len(changes))
 
 if avg_change > 0.3:
     st.success("🟢 Markt positiv")
