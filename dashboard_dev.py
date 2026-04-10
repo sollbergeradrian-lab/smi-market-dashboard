@@ -74,14 +74,17 @@ markets = {
 changes = []
 
 for ticker in markets.values():
+
     data = safe_history(ticker)
 
     if data is not None and not data.empty and len(data) >= 2 and "Close" in data.columns:
 
-        change = (data["Close"].iloc[-1] / data["Close"].iloc[-2] - 1) * 100
+        last_price = float(data["Close"].iloc[-1])
+        prev_price = float(data["Close"].iloc[-2])
 
-        if pd.notna(change):
-            changes.append(float(change))
+        change = (last_price / prev_price - 1) * 100
+
+        changes.append(change)
 
 avg_change = float(pd.Series(changes).mean())
 
