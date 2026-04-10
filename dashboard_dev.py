@@ -268,9 +268,9 @@ sp500 = yf.Ticker("^GSPC").history(period="2d")
 nasdaq = yf.Ticker("^IXIC").history(period="2d")
 btc = yf.Ticker("BTC-USD").history(period="2d")
 
-sp_change = ((sp500["Close"].iloc[-1] / sp500["Close"].iloc[-2]) - 1) * 100
-nas_change = ((nasdaq["Close"].iloc[-1] / nasdaq["Close"].iloc[-2]) - 1) * 100
-btc_change = ((btc["Close"].iloc[-1] / btc["Close"].iloc[-2]) - 1) * 100
+sp_change = float(sp500["Close"].pct_change().iloc[-1] * 100)
+nas_change = float(nasdaq["Close"].pct_change().iloc[-1] * 100)
+btc_change = float(btc["Close"].pct_change().iloc[-1] * 100)
 
 risk_on = 0
 
