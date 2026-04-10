@@ -6,17 +6,25 @@ import os
 from datetime import date
 from fpdf import FPDF
 
+st.set_page_config(
+    page_title="SMI Market Dashboard",
+    layout="wide"
+)
+
+st.autorefresh(interval=300000, key="refresh")
+
+@st.cache_data(ttl=300)
 def safe_history(ticker, period="2d"):
 
     try:
-        data = yf.Ticker(ticker).history(period=period)
+        data = yf.download(ticker, period=period, progress=False)
 
         if data is None or data.empty:
             return None
 
         return data
 
-    except:
+    except Exception:
         return None
 
 
