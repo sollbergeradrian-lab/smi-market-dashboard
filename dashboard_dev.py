@@ -133,6 +133,14 @@ for name, ticker in markets.items():
         "Change %": change
     })
 
+sp500 = safe_history("^GSPC")
+nasdaq = safe_history("^IXIC")
+btc = safe_history("BTC-USD")
+
+sp_change = (sp500["Close"].iloc[-1] / sp500["Close"].iloc[-2] - 1) * 100
+nas_change = (nasdaq["Close"].iloc[-1] / nasdaq["Close"].iloc[-2] - 1) * 100
+btc_change = (btc["Close"].iloc[-1] / btc["Close"].iloc[-2] - 1) * 100
+
 radar = pd.DataFrame({
     "Market": ["S&P 500", "NASDAQ", "Bitcoin"],
     "Change %": [sp_change, nas_change, btc_change]
