@@ -93,7 +93,12 @@ for ticker in markets.values():
 
         changes.append(change)
 
-avg_change = float(pd.Series(changes).mean())
+valid_changes = [c for c in changes if isinstance(c, (int, float))]
+
+if len(valid_changes) > 0:
+    avg_change = sum(valid_changes) / len(valid_changes)
+else:
+    avg_change = 0
 
 if avg_change > 0.3:
     st.success("🟢 Markt positiv")
