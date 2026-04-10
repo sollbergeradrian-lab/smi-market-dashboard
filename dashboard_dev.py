@@ -71,13 +71,13 @@ for ticker in markets.values():
     data = safe_history(ticker)
 
     if (
-    data is not None
-    and not data.empty
-    and len(data) >= 2
-    and "Close" in data.columns
-):
-    change = ((data["Close"].iloc[-1] / data["Close"].iloc[-2]) - 1) * 100
-    changes.append(change)
+        data is not None
+        and not data.empty
+        and len(data) >= 2
+        and "Close" in data.columns
+    ):
+        change = ((data["Close"].iloc[-1] / data["Close"].iloc[-2]) - 1) * 100
+        changes.append(change)
 
 avg_change = sum(changes) / len(changes)
 
