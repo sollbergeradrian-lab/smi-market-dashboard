@@ -5,13 +5,14 @@ import yfinance as yf
 import os
 from datetime import date
 from fpdf import FPDF
+from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
     page_title="SMI Market Dashboard",
     layout="wide"
 )
 
-st.autorefresh(interval=300000, key="refresh")
+st.autorefresh(interval=600000, key="refresh")
 
 @st.cache_data(ttl=300)
 def safe_history(ticker, period="2d"):
