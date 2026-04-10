@@ -146,9 +146,18 @@ def calc_change(data):
     else:
         return 0
 
-sp_change = float((sp500["Close"].iloc[-1] / sp500["Close"].iloc[-2] - 1) * 100)
-nas_change = float((nasdaq["Close"].iloc[-1] / nasdaq["Close"].iloc[-2] - 1) * 100)
-btc_change = float((btc["Close"].iloc[-1] / btc["Close"].iloc[-2] - 1) * 100)
+sp_change = 0
+nas_change = 0
+btc_change = 0
+
+if sp500 is not None and not sp500.empty and len(sp500) >= 2:
+    sp_change = (sp500["Close"].iloc[-1].item() / sp500["Close"].iloc[-2].item() - 1) * 100
+
+if nasdaq is not None and not nasdaq.empty and len(nasdaq) >= 2:
+    nas_change = (nasdaq["Close"].iloc[-1].item() / nasdaq["Close"].iloc[-2].item() - 1) * 100
+
+if btc is not None and not btc.empty and len(btc) >= 2:
+    btc_change = (btc["Close"].iloc[-1].item() / btc["Close"].iloc[-2].item() - 1) * 100
 
 radar = pd.DataFrame({
     "Market": ["S&P 500", "NASDAQ", "Bitcoin"],
