@@ -137,16 +137,23 @@ sp500 = safe_history("^GSPC")
 nasdaq = safe_history("^IXIC")
 btc = safe_history("BTC-USD")
 
-sp_change = (sp500["Close"].iloc[-1] / sp500["Close"].iloc[-2] - 1) * 100
-nas_change = (nasdaq["Close"].iloc[-1] / nasdaq["Close"].iloc[-2] - 1) * 100
-btc_change = (btc["Close"].iloc[-1] / btc["Close"].iloc[-2] - 1) * 100
+def calc_change(data):
+
+    if data is not None and not data.empty and "Close" in data.columns and len(data) >= 2:
+        last_price = data["Close"].iloc[-1]
+        prev_price = data["Close"].iloc[-2]
+        return (last_price / prev_price - 1) * 100
+    else:
+        return 0
+
+sp_change = calc_change(sp500)
+nas_change = calc_change(nasdaq)
+btc_change = calc_change(btc)
 
 radar = pd.DataFrame({
     "Market": ["S&P 500", "NASDAQ", "Bitcoin"],
     "Change %": [sp_change, nas_change, btc_change]
 })
-
-radar["Change %"] = radar["Change %"].astype(float)
 
 fig = px.bar(
     radar,
