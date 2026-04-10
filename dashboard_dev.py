@@ -133,7 +133,7 @@ for name, ticker in markets.items():
         "Change %": change
     })
 
-radar = pd.DataFrame(radar_data)
+radar["Change %"] = radar["Change %"].astype(float)
 
 fig = px.bar(
     radar,
