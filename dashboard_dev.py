@@ -77,10 +77,17 @@ for ticker in markets.values():
 
     data = safe_history(ticker)
 
-    if data is not None and not data.empty and len(data) >= 2 and "Close" in data.columns:
+    if (
+        data is not None
+        and not data.empty
+        and "Close" in data.columns
+        and len(data["Close"].dropna()) >= 2
+    ):
 
-        last_price = float(data["Close"].iloc[-1])
-        prev_price = float(data["Close"].iloc[-2])
+        close = data["Close"].dropna()
+
+        last_price = close.iloc[-1]
+        prev_price = close.iloc[-2]
 
         change = (last_price / prev_price - 1) * 100
 
