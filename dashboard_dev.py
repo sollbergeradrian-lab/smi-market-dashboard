@@ -155,13 +155,13 @@ radar = pd.DataFrame({
     "Change %": [sp_change, nas_change, btc_change]
 })
 
+st.write(radar)
+
 fig = px.bar(
     radar,
     x="Market",
     y="Change %",
-    color="Change %",
-    color_continuous_scale=["red","white","green"],
-    title="Global Market Performance"
+    color="Change %"
 )
 
 st.plotly_chart(fig, use_container_width=True, key="global_market_radar")
