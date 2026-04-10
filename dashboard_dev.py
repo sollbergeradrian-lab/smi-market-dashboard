@@ -220,6 +220,10 @@ stocks_num["Monat_raw"] = stocks["Monat %"].apply(clean_percent)
 
 # Trendfunktion
 def trend(v):
+
+    if v is None:
+        return "⚪ 0.00%"
+
     try:
         v = float(v)
     except:
